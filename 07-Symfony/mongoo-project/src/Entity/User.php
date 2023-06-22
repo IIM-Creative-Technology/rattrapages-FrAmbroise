@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -29,6 +31,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\OneToMany(mappedBy: 'userid', targetEntity: Delivery::class)]
+    private Collection $deliveries;
+
+    public function __construct()
+    {
+        $this->deliveries = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -98,5 +108,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Delivery>
+     */
+    public function getDeliveries(): Collection
+    {
+        return $this->deliveries;
+    }
+
+    public function addDelivery(Delivery $delivery): static
+    {
+        if (!$this->deliveries->contains($delivery)) {
+            $this->deliveries->add($delivery);
+            $delivery->setUserid($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDelivery(Delivery $delivery): static
+    {
+        if ($this->deliveries->removeElement($delivery)) {
+            // set the owning side to null (unless already changed)
+            if ($delivery->getUserid() === $this) {
+                $delivery->setUserid(null);
+            }
+        }
+
+        return $this;
     }
 }
