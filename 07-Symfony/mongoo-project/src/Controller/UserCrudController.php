@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class UserCrudController extends AbstractCrudController
@@ -11,7 +12,14 @@ class UserCrudController extends AbstractCrudController
     {
         return User::class;
     }
-
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setUser('...')
+            ->setDateFormat('...')
+            // ...
+            ;
+    }
     /*
     public function configureFields(string $pageName): iterable
     {
