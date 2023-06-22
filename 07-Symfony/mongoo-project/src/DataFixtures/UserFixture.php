@@ -36,8 +36,11 @@ class UserFixture extends Fixture
                     )
                 );
             }
-            if($i==1){
+            if($i==1) {
                 $user->setRoles(['ROLE_ADMIN']);
+            }
+            else{
+                $user->setRoles(['ROLE_USER']);
             }
             $manager->persist($user);
         }
