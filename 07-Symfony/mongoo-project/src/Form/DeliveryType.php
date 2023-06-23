@@ -32,7 +32,9 @@ class DeliveryType extends AbstractType
             ])
             ->add('userid',EntityType::class,[
                 'data' => $this->token->getToken()->getUser(),
-                'class' => User::class
+                'class' => User::class,
+                'label' => false,
+                
             ])
             ->add('Salad')
             ->add('drink')
