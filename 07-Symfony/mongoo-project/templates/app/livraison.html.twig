@@ -7,4 +7,19 @@
 
         <h1>Livraison Mongoo</h1>
 
+        {% if app.user %}
+                //Formulaire
+                {{ include('delivery/_form.html.twig') }}
+                //Liste commandes en attente et en cours
+        {% endif %}
+        {% if not app.user  %}
+                <h2>Connectez-vous pour commander</h2>
+                <button class="btn btn-lg btn-primary">
+                        <a href="/register">Créer un compte</a>
+                </button>
+                <button class="btn btn-lg btn-primary">
+                        <a href="/login">Log in</a>
+                </button>
+        {% endif %}
+
 {% endblock %}

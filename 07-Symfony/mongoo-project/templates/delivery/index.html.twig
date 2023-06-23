@@ -9,17 +9,19 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>User id</th>
                 <th>Status</th>
                 <th>Salad</th>
                 <th>Drink</th>
                 <th>Desert</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for delivery in deliveries %}
             <tr>
                 <td>{{ delivery.id }}</td>
+                <td>{{ delivery.userid }}</td>
                 <td>{{ delivery.status }}</td>
                 <td>{{ delivery.Salad }}</td>
                 <td>{{ delivery.drink }}</td>
@@ -38,4 +40,18 @@
     </table>
 
     <a href="{{ path('app_delivery_new') }}">Create new</a>
+
+    {% if app.user %}
+        <a href="{{ path('app_delivery_new') }}">Commander</a>
+    {% endif %}
+    {% if not app.user  %}
+        <h2>Connectez-vous pour commander</h2>
+        <button class="btn btn-lg btn-primary">
+            <a href="/register">Créer un compte</a>
+        </button>
+        <button class="btn btn-lg btn-primary">
+            <a href="/login">Log in</a>
+        </button>
+    {% endif %}
+
 {% endblock %}
