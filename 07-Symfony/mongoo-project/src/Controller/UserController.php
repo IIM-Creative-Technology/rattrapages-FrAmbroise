@@ -41,12 +41,18 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function show(User $user): Response
+    public function show($id, UserRepository $userRepository): Response
     {
+        $user = $userRepository->find($id);
+        if(!$user){
+            throw $this->createNotFoundException('User not found');
+        }
         return $this->render('user/show.html.twig', [
             'user' => $user,
         ]);
     }
+
+
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
@@ -75,4 +81,7 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
 }

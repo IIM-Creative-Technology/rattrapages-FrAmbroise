@@ -6,6 +6,7 @@ use App\Entity\Delivery;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -21,7 +22,7 @@ class DeliveryCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('userid')->hideOnForm(),
+            AssociationField::new('userid'),
             TextField::new('status'),
             TextField::new('salad'),
             TextField::new('drink'),

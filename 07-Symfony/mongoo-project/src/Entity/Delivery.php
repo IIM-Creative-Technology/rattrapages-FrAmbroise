@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
+
 use App\Repository\DeliveryRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -47,10 +49,11 @@ class Delivery
 
     public function getUserid(): ?User
     {
+
         return $this->userid;
     }
 
-    public function setUserid(?User $userid): static
+    public function setUserid(?User $userid): self
     {
         $this->userid = $userid;
 
