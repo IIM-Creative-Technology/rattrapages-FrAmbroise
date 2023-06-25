@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Delivery{% endblock %}
+{% block title %}Nouvelle commande{% endblock %}
 
 {% block body %}
-    <h1>Create new Delivery</h1>
+    <h1>Commandez</h1>
 
     {{ include('delivery/_form.html.twig') }}
 
-    <a href="{{ path('app_delivery_index') }}">back to list</a>
+    <a href="{{ path('app_delivery_index') }}">Retour</a>
 {% endblock %}

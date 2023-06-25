@@ -3,7 +3,7 @@
 {% block title %}Gestion des commande{% endblock %}
 
 {% block body %}
-
+    {% include 'header.html.twig' %}
     {% if app.user %}
         <a href="{{ path('app_delivery_new') }}">Commander</a>
     {% endif %}
