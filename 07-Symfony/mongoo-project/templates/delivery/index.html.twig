@@ -1,45 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Delivery index{% endblock %}
+{% block title %}Gestion des commande{% endblock %}
 
 {% block body %}
-    <h1>Delivery index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>User id</th>
-                <th>Status</th>
-                <th>Salad</th>
-                <th>Drink</th>
-                <th>Desert</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for delivery in deliveries %}
-            <tr>
-                <td>{{ delivery.id }}</td>
-                <td>{{ delivery.userid }}</td>
-                <td>{{ delivery.status }}</td>
-                <td>{{ delivery.Salad }}</td>
-                <td>{{ delivery.drink }}</td>
-                <td>{{ delivery.desert }}</td>
-                <td>
-                    <a href="{{ path('app_delivery_show', {'id': delivery.id}) }}">show</a>
-                    <a href="{{ path('app_delivery_edit', {'id': delivery.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_delivery_new') }}">Create new</a>
 
     {% if app.user %}
         <a href="{{ path('app_delivery_new') }}">Commander</a>
